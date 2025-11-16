@@ -4,15 +4,15 @@ Prosimy o uważne zapoznanie się z poniższymi informacjami:
 
 <project_description>
 ### Główny problem
-Trudność w określaniu jakie jest capacity zespołu na dany sprint. Nie mamy dostępu do systemu hr. Wpisywanie capacity w azure jest niewygodne i członkowie zespołu tego nie robią. Członkowie zespołu dobrowolnie wpisują w excelu kiedy ich nie będzie. Dodatkowo członkowie którym wypadła nieplanowana nieobecność informują o tym na grupie teams lub przełożony informuje o tym w trakcie rozmowy, wtedy aktualizowany jest excel z nieobecnościami.
+Trudność w określaniu jakie jest capacity zespołu na dany sprint (przed sprintem) i jak sie ono zmienia w wyniku nieprzewidzianych nieobecnosci (po sprincie). Zmiana ma wpływ na ilość zrealizowanych zadań. Nie mamy dostępu do systemu hr. Wpisywanie capacity w azure jest niewygodne i członkowie zespołu tego nie robią. Członkowie zespołu dobrowolnie wpisują w excelu kiedy ich nie będzie. Dodatkowo członkowie którym wypadła nieplanowana nieobecność informują o tym na grupie teams lub przełożony informuje o tym w trakcie rozmowy, wtedy aktualizowany jest excel z nieobecnościami.
 
 ### Najmniejszy zestaw funkcjonalności
 - kalendarz państwowych dni wolnych jako słownik
-- prosty system kont użytkowników
+- prosty system kont użytkowników, użytkownikami będa osoby w roli scrum masterów lub team leadów,
 - po zalogowaniu użytkownik widzi listę zespołów,
-- dla zespołu można definiować role
+- dla zespołu można definiować lise ról (np. developer frontend, developer backend, tester, analityk)
 - zakładanie zespółu, i dodawanie do niego osoby z odpowiednimi rolami, można podać datę rozpoczęcia i zakończenia pracy osoby w zespole
-- import kalendarza nieobecności z pliku excel, kolejny import dla tego samego zespołu nadpisuje poprzednie dane
+- import kalendarza nieobecności z pliku excel, kolejny import dla tego samego zespołu zastępuje poprzednie dane, poprzednie dane powinny zostać zarchiwizowane
 - podgląd kalendarza zespołu
 - wyliczenie dla podanych dat startu i końca jaka jest dostępność w MD w podziale na poszczególne role
 
@@ -21,9 +21,10 @@ Trudność w określaniu jakie jest capacity zespołu na dany sprint. Nie mamy d
 - edycja niedostępności członków zespołu na podglądzie kalendarza
 - aplikacja mobilna
 - integracja z azure
+- wyznaczanie różnicy między capacity planowanym a faktycznym
 
 ### Krytetria sukcesu
-- poprawnie wyliczana jest liczba dostępnych MD w podziale na role w podanym zakresie dat
+- poprawnie wyliczana jest liczba dostępnych MD dla każdej z roli w podanym zakresie dat
 </project_description>
 
 Przeanalizuj dostarczone informacje, koncentrując się na aspektach istotnych dla tworzenia PRD. Rozważ następujące kwestie:
@@ -45,12 +46,7 @@ Na podstawie analizy wygeneruj listę 10 pytań i zaleceń w formie łączonej (
 6. Harmonogramu i zasobów
 
 <pytania>
-Wymień tutaj swoje pytania i zalecenia, ponumerowane dla jasności:
-
-Przykładowo:
-1. Czy już od startu projektu planujesz wprowadzenie płatnych subskrypcji?
-
-Rekomendacja: Pierwszy etap projektu może skupić się na funkcjonalnościach darmowych, aby przyciągnąć użytkowników, a płatne funkcje można wprowadzić w późniejszym etapie.
+Wymień tutaj swoje pytania i zalecenia, ponumerowane dla jasności
 </pytania>
 
 Kontynuuj ten proces, generując nowe pytania i rekomendacje w oparciu o odpowiedzi użytkownika, dopóki użytkownik wyraźnie nie poprosi o podsumowanie.
