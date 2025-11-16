@@ -196,7 +196,6 @@ Czy system ma generować logi dla wszystkich operacji użytkowników? Zalecenie:
 9. Aplikacja ma działać w najnowszych wersjach przeglądarek Chrome, Firefox i Edge.
 10. Tak, system ma generować logi dla wszystkich operacji użytkowników.
 
-11. </odpowiedzi>
 
 ---
 
