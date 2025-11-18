@@ -1,0 +1,75 @@
+<conversation_summary>
+<decisions>
+1.  **Struktura pliku Excel:** Rok jest odczytywany z nazwy arkusza. Nazwa miesiąca znajduje się w pierwszym wierszu nad tabelą z danymi.
+2.  **Identyfikacja nieobecności:** Dowolne wypełnienie tła komórki jest interpretowane jako dzień nieobecności.
+3.  **Mapowanie pracowników:** Nazwa osoby w pliku Excel musi być identyczna z wprowadzoną w systemie. W przypadku braku dopasowania, cały import dla danego roku jest przerywany i odrzucany.
+4.  **Zarządzanie danymi:** Każdy import pliku nadpisuje dane dla konkretnego roku (określonego w nazwie arkusza).
+5.  **Nawigacja:** Interfejs kalendarza umożliwia nawigację pomiędzy latami za pomocą strzałek.
+6.  **Raport dostępności:** Wynik jest prezentowany w tabeli z kolumnami: `Rola`, `Planowane MD`, `Nieobecności w MD` oraz `Dostępne MD`. Raport jest zawsze generowany dla wszystkich ról w zespole.
+7.  **Wymiar etatu:** W MVP wszyscy pracownicy mają stały wymiar etatu równy 1.0.
+8.  **Brakujące miesiące:** Jeśli plik importu nie zawiera danych dla wszystkich 12 miesięcy, dla brakujących miesięcy przyjmuje się zerową dostępność (capacity = 0).
+9.  **Obliczanie `Planowane MD`:** `Planowane MD` to dni robocze (poniedziałek-piątek) z wyłączeniem predefiniowanej listy polskich świąt państwowych.
+10. **Zarządzanie zespołami:** Użytkownik, który tworzy zespół, staje się jego właścicielem. Tylko właściciel może widzieć, edytować i importować dane do swojego zespołu.
+11. **Zarządzanie rolami:** Role w zespole są definiowane jednorazowo podczas jego tworzenia i nie można ich później edytować.
+12. **Walidacja importu:** Import jest transakcyjny. Błąd (np. brak dopasowania nazwiska, brak arkuszy z poprawnym rokiem) powoduje odrzucenie całego pliku i wyświetlenie komunikatu o błędzie. Zawartość wiersza z numerami dni jest ignorowana.
+13. **Zarządzanie członkami zespołu:** Użytkownik może dodawać, edytować (rolę, daty pracy) i usuwać członków swojego zespołu.
+14. **Archiwizacja i historia:** System nie przechowuje historii obliczeń capacity. Poprzednie dane o nieobecnościach są usuwane przy nowym imporcie dla danego roku.
+</decisions>
+
+<matched_recommendations>
+1.  Użytkownik, który tworzy zespół, automatycznie staje się jego właścicielem i tylko on może nim zarządzać.
+2.  Operacja importu dla danego roku jest transakcyjna; błąd walidacji powoduje odrzucenie wszystkich zmian z danego pliku.
+3.  Po pierwszym zalogowaniu, użytkownik bez zespołów zobaczy stronę powitalną z przyciskiem do utworzenia pierwszego zespołu.
+4.  W widoku listy członków zespołu dostępna jest opcja edycji (rola, daty zatrudnienia).
+5.  Logika importu ignoruje nagłówki kolumn z dniami miesiąca, zakładając, że reprezentują one kolejne dni miesiąca.
+6.  System zawsze generuje tabelę dostępności dla wszystkich ról zdefiniowanych w zespole.
+7.  W MVP nie jest przechowywana historia obliczeń capacity.
+8.  Do tabeli wynikowej dodane zostaną kolumny `Planowane MD` i `Nieobecności w MD` dla większej przejrzystości.
+9.  Na liście zespołów, obok nazwy, wyświetlana jest liczba aktywnych członków.
+10. Import ignoruje nieobecności przypadające poza okresem pracy członka zespołu, zapisując ostrzeżenie w logu.
+</matched_recommendations>
+
+<prd_planning_summary>
+### Podsumowanie planowania PRD dla MVP
+
+Celem projektu jest stworzenie narzędzia dla Scrum Masterów i Team Leaderów do automatyzacji obliczania dostępności (capacity) zespołu na podstawie danych o nieobecnościach importowanych z pliku Excel.
+
+#### Główne wymagania funkcjonalne:
+1.  **Zarządzanie użytkownikami i uprawnieniami:**
+    *   Brak panelu administracyjnego w MVP; konta tworzone bezpośrednio w bazie.
+    *   Użytkownik po zalogowaniu widzi tylko zespoły, których jest właścicielem.
+2.  **Zarządzanie zespołami:**
+    *   Użytkownik może tworzyć nowe zespoły, podając ich nazwę oraz definiując na stałe listę ról.
+    *   Użytkownik może dodawać, edytować i usuwać członków w swoich zespołach, przypisując im rolę i określając okres pracy.
+3.  **Import danych o nieobecnościach:**
+    *   Import odbywa się z pliku `.xlsx`. Nazwa arkusza musi być rokiem (np. `2024`).
+    *   Każdy arkusz zawiera do 12 tabel dla poszczególnych miesięcy, z nagłówkiem miesiąca nad każdą tabelą.
+    *   Nieobecność jest oznaczana przez dowolny kolor tła komórki.
+    *   System przeprowadza transakcyjną walidację pliku – błąd w nazwie arkusza lub niezgodność nazwiska pracownika powoduje odrzucenie całego importu.
+4.  **Wizualizacja danych:**
+    *   Widok kalendarza prezentuje nieobecności zespołu dla wybranego roku z możliwością nawigacji do lat poprzednich.
+5.  **Obliczanie i prezentacja Capacity:**
+    *   System oblicza dostępność w osobodniach (MD) na podstawie dni roboczych, świąt i zaimportowanych nieobecności.
+    *   Wynik jest prezentowany w tabeli z podziałem na role, zawierającej kolumny `Planowane MD`, `Nieobecności w MD` i `Dostępne MD`.
+
+#### Kluczowe historie użytkownika i ścieżki korzystania:
+*   **Jako nowy użytkownik,** chcę się zalogować i zobaczyć stronę powitalną, która pozwoli mi utworzyć mój pierwszy zespół, zdefiniować jego nazwę i listę ról.
+*   **Jako właściciel zespołu,** chcę dodać członków do mojego zespołu, podając ich imię i nazwisko, okres pracy oraz przypisując im jedną ze zdefiniowanych ról.
+*   **Jako właściciel zespołu,** chcę zaimportować plik Excel z nieobecnościami na cały rok, aby system automatycznie zaktualizował kalendarz nieobecności mojego zespołu.
+*   **Jako właściciel zespołu,** chcę otrzymać jasny komunikat o sukcesie lub błędzie po próbie importu, ze wskazaniem przyczyny ewentualnego niepowodzenia.
+*   **Jako właściciel zespołu,** chcę wygenerować raport dostępności (capacity) dla mojego zespołu, aby zobaczyć podsumowanie dostępnych osobodni (MD) dla każdej roli.
+*   **Jako właściciel zespołu,** chcę mieć możliwość przełączania widoku kalendarza i raportów na poprzednie lata, dla których zaimportowałem dane.
+
+#### Ważne kryteria sukcesu i sposoby ich mierzenia:
+*   **Poprawność obliczeń:** Wyliczone `Dostępne MD` muszą być zgodne z formułą: `Planowane MD` (dni robocze - święta) - `Nieobecności w MD`.
+*   **Niezawodność importu:** System musi poprawnie przetwarzać prawidłowo sformatowane pliki i jednoznacznie odrzucać te z błędami walidacji.
+*   **Użyteczność:** Użytkownik jest w stanie zaimportować dane i wygenerować raport w czasie krótszym niż 2 minuty.
+*   **Bezpieczeństwo danych:** Użytkownicy nie mają dostępu do zespołów, których nie są właścicielami.
+
+</prd_planning_summary>
+
+<unresolved_issues>
+*   Nie sprecyzowano formatu, w jakim użytkownik wprowadza listę ról podczas tworzenia zespołu (np. czy jest to pole tekstowe z wartościami oddzielonymi przecinkiem, czy dynamicznie dodawane pola).
+*   Nie zdefiniowano dokładnego formatu predefiniowanego kalendarza świąt (np. czy będzie on w pliku konfiguracyjnym, czy w tabeli w bazie danych).
+</unresolved_issues>
+</conversation_summary>
