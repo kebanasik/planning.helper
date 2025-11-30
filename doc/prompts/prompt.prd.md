@@ -4,17 +4,17 @@ Prosimy o uważne zapoznanie się z poniższymi informacjami:
 
 <project_description>
 ### Główny problem
-Trudność w określaniu jakie jest capacity zespołu na dany sprint (przed sprintem) i jak sie ono zmienia w wyniku nieprzewidzianych nieobecnosci (po sprincie). Zmiana ma wpływ na ilość zrealizowanych zadań. Nie mamy dostępu do systemu hr. Wpisywanie capacity w azure jest niewygodne i członkowie zespołu tego nie robią. Członkowie zespołu dobrowolnie wpisują w excelu kiedy ich nie będzie. Dodatkowo członkowie którym wypadła nieplanowana nieobecność informują o tym na grupie teams lub przełożony informuje o tym w trakcie rozmowy, wtedy aktualizowany jest excel z nieobecnościami.
+Trudność w określaniu jakie jest capacity zespołu na dany okres czasu w przyszłości i jak sie ono zmienia w wyniku nieprzewidzianych nieobecnosci (po tym okresie). Zmiana ma wpływ na ilość zrealizowanych zadań. Nie mamy dostępu do systemu hr. Wpisywanie capacity w azure jest niewygodne i członkowie zespołu tego nie robią. Członkowie zespołu dobrowolnie wpisują w excelu kiedy ich nie będzie. Dodatkowo członkowie którym wypadła nieplanowana nieobecność informują o tym na grupie teams lub przełożony informuje o tym w trakcie rozmowy, wtedy aktualizowany jest excel z nieobecnościami.
 
 ### Najmniejszy zestaw funkcjonalności
 - kalendarz państwowych dni wolnych jako słownik
-- prosty system kont użytkowników, użytkownikami będa osoby w roli scrum masterów lub team leadów,
-- po zalogowaniu użytkownik widzi listę zespołów,
+- prosty system kont użytkowników, użytkownikami będa osoby w roli product owner, pozostali czlonkowie zespołu nie będą się logowali do aplikacji
+- po zalogowaniu użytkownik widzi listę swoich zespołów,
 - dla zespołu można definiować lise ról (np. developer frontend, developer backend, tester, analityk)
 - zakładanie zespółu, i dodawanie do niego osoby z odpowiednimi rolami, można podać datę rozpoczęcia i zakończenia pracy osoby w zespole
-- import kalendarza nieobecności z pliku excel, kolejny import dla tego samego zespołu zastępuje poprzednie dane, poprzednie dane powinny zostać zarchiwizowane
+- import kalendarza nieobecności z pliku excel, kolejny import dla tego samego zespołu zastępuje poprzednie dane, poprzednie dane powinny zostać zarchiwizowane, dla kazdego importu zapisywana jest data danych
 - podgląd kalendarza zespołu
-- wyliczenie dla podanych dat startu i końca jaka jest dostępność w MD w podziale na poszczególne role
+- pod podglądem można wyliczyć dla podanych dat startu i końca jaka jest dostępność w MD w podziale na poszczególne role
 
 ### Co NIE wchodzi w zakres MVP
 - współdzielenie informacji między zespołami - każdy ma swoją konfigurację
@@ -24,6 +24,7 @@ Trudność w określaniu jakie jest capacity zespołu na dany sprint (przed spri
 - wyznaczanie różnicy między capacity planowanym a faktycznym
 
 ### Krytetria sukcesu
+- import pliku excel z nieobecnościami działa poprawnie
 - poprawnie wyliczana jest liczba dostępnych MD dla każdej z roli w podanym zakresie dat
 </project_description>
 
