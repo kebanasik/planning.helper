@@ -15,6 +15,11 @@ Oto pliki projektu, które należy przeanalizować:
 @.nvmrc
 </dependencies>
 
+Pliki do zignorowania:
+<ignoruj>
+/doc/prompts/*
+</ignoruj>
+
 Twoim zadaniem jest utworzenie pliku README.md o następującej strukturze:
 
 1. Project name
